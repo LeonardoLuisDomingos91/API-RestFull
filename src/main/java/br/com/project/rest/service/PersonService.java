@@ -24,7 +24,7 @@ public class PersonService {
 
     public PersonVo findById(Long id){
         Person entity = personRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+                .orElseThrow(() -> new ResourceNotFoundException("Nada"));
         return DozerConverter.parseObject(personRepository.save(entity), PersonVo.class);
     }
 
@@ -34,13 +34,13 @@ public class PersonService {
     
     public void delete(Long id){
         Person person = personRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+                .orElseThrow(() -> new ResourceNotFoundException("vazia"));
         personRepository.delete(person);
     }
 
     public PersonVo update(PersonVo person){
         Person entity = personRepository.findById(person.getKey())
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+                .orElseThrow(() -> new ResourceNotFoundException("não existe"));
 
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
